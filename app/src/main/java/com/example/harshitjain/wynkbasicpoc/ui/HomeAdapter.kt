@@ -7,9 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.example.harshitjain.wynkbasicpoc.R
-import com.example.harshitjain.wynkbasicpoc.db.Item
+import com.example.harshitjain.wynkbasicpoc.model.Item
 
 class HomeAdapter(val context: Context?) : RecyclerView.Adapter<HomeAdapter.ItemViewHolder>() {
 
@@ -33,9 +32,7 @@ class HomeAdapter(val context: Context?) : RecyclerView.Adapter<HomeAdapter.Item
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.tvTitle.text = items?.get(position)?.title
-        holder.tvSubTitle.text = items?.get(position)?.subtitle
         holder.tvIndex.text = position.toString()
-        Glide.with(holder.imageView.context).load(items?.get(position)?.smallImage).into(holder.imageView)
     }
 
 

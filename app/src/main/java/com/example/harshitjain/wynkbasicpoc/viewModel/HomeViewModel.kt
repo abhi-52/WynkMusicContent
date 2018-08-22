@@ -2,7 +2,7 @@ package com.example.harshitjain.wynkbasicpoc.viewModel
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.ViewModel
-import com.example.harshitjain.wynkbasicpoc.db.Item
+import com.example.harshitjain.wynkbasicpoc.model.Item
 import com.example.harshitjain.wynkbasicpoc.repo.ItemRepository
 import com.example.harshitjain.wynkbasicpoc.repo.Resource
 

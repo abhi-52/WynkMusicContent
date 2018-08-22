@@ -14,7 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.harshitjain.wynkbasicpoc.R
 import com.example.harshitjain.wynkbasicpoc.WynkApp
-import com.example.harshitjain.wynkbasicpoc.db.Item
+import com.example.harshitjain.wynkbasicpoc.model.Item
 import com.example.harshitjain.wynkbasicpoc.viewModel.HomeViewModel
 import com.example.harshitjain.wynkbasicpoc.viewModel.HomeViewModelFactory
 import kotlinx.android.synthetic.main.fragment_grid.*

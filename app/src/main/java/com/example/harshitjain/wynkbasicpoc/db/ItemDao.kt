@@ -2,6 +2,7 @@ package com.example.harshitjain.wynkbasicpoc.db
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
+import com.example.harshitjain.wynkbasicpoc.model.Item
 
 @Dao
 abstract class ItemDao {

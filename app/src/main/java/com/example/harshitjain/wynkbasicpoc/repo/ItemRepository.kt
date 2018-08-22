@@ -4,8 +4,8 @@ import android.arch.lifecycle.LiveData
 import android.util.Log
 import com.example.harshitjain.wynkbasicpoc.db.Collection
 import com.example.harshitjain.wynkbasicpoc.db.CollectionDao
-import com.example.harshitjain.wynkbasicpoc.db.Item
 import com.example.harshitjain.wynkbasicpoc.db.ItemDao
+import com.example.harshitjain.wynkbasicpoc.model.Item
 import com.example.harshitjain.wynkbasicpoc.network.ApiService
 
 class ItemRepository(private val appExecutors: AppExecutors, private val apiService: ApiService, private val itemDao: ItemDao, val collectionDao: CollectionDao) {

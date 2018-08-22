@@ -1,7 +1,7 @@
 package com.example.harshitjain.wynkbasicpoc.network
 
 import android.arch.lifecycle.LiveData
-import com.example.harshitjain.wynkbasicpoc.db.Item
+import com.example.harshitjain.wynkbasicpoc.model.Item
 import com.example.harshitjain.wynkbasicpoc.repo.ApiResponse
 import retrofit2.http.GET
 import retrofit2.http.Query

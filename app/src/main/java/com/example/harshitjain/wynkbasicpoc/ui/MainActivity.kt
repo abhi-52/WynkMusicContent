@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.example.harshitjain.wynkbasicpoc.R
-import com.example.harshitjain.wynkbasicpoc.db.Item
+import com.example.harshitjain.wynkbasicpoc.model.Item
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), GridFragment.OnListFragmentInteractionListener {

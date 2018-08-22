@@ -6,11 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.example.harshitjain.wynkbasicpoc.R
-import com.example.harshitjain.wynkbasicpoc.db.Item
-
-
+import com.example.harshitjain.wynkbasicpoc.model.Item
 import com.example.harshitjain.wynkbasicpoc.ui.GridFragment.OnListFragmentInteractionListener
 import com.example.harshitjain.wynkbasicpoc.ui.dummy.DummyContent.DummyItem
 import kotlinx.android.synthetic.main.item_grid.view.*
@@ -50,7 +47,6 @@ class GridAdapter(private val mListener: OnListFragmentInteractionListener?) : R
         val item = mValues?.get(position)
         holder.mTvTitle.text = item?.title
         holder.mTvIndex.text = position.toString()
-        Glide.with(holder.mIvImage.context).load(mValues?.get(position)?.smallImage).into(holder.mIvImage)
         with(holder.mView) {
             tag = item
             setOnClickListener(mOnClickListener)
