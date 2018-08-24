@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "4260e432edc444b837a184db927673c5",
+    "identityHash": "c63aa8d9cfc4a8f4e63fe71a4b10e5ea",
     "entities": [
       {
         "tableName": "Item",
@@ -91,24 +91,24 @@
         "foreignKeys": []
       },
       {
-        "tableName": "Collection",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`collection_id` TEXT NOT NULL, `item_id` TEXT NOT NULL, `collection_title` TEXT NOT NULL, `rank` INTEGER NOT NULL, PRIMARY KEY(`collection_id`, `item_id`))",
+        "tableName": "ItemRelation",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`parent_id` TEXT NOT NULL, `child_id` TEXT NOT NULL, `parent_title` TEXT NOT NULL, `rank` INTEGER NOT NULL, PRIMARY KEY(`parent_id`, `child_id`))",
         "fields": [
           {
             "fieldPath": "id",
-            "columnName": "collection_id",
+            "columnName": "parent_id",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "itemId",
-            "columnName": "item_id",
+            "columnName": "child_id",
             "affinity": "TEXT",
             "notNull": true
           },
           {
             "fieldPath": "title",
-            "columnName": "collection_title",
+            "columnName": "parent_title",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -121,8 +121,8 @@
         ],
         "primaryKey": {
           "columnNames": [
-            "collection_id",
-            "item_id"
+            "parent_id",
+            "child_id"
           ],
           "autoGenerate": false
         },
@@ -132,7 +132,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"4260e432edc444b837a184db927673c5\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c63aa8d9cfc4a8f4e63fe71a4b10e5ea\")"
     ]
   }
 }

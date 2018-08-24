@@ -32,12 +32,4 @@ class NetworkModule {
     fun provideItemDao(wynkDB: WynkDB): ItemDao {
         return wynkDB.itemDao()
     }
-
-    @Provides
-    @Singleton
-    fun provideCollectionDao(wynkDB: WynkDB): CollectionDao {
-        return wynkDB.collectionDao()
-    }
-
-
 }

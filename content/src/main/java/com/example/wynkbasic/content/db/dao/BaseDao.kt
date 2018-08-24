@@ -6,10 +6,16 @@ import android.arch.persistence.room.*
 abstract class BaseDao<T> {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertItem(t: T)
+    abstract fun insertOrReplaceItem(t: T)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insertAll(tList: List<T>)
+    abstract fun insertOrReplaceAll(tList: List<T>)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    abstract fun insertOrIgnoreItem(t: T)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    abstract fun insertOrIgnoreAll(tList: List<T>)
 
     @Update
     abstract fun updateItem(t: T)

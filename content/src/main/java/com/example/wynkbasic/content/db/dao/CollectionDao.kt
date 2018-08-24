@@ -1,11 +1,9 @@
 package com.example.wynkbasic.content.db.dao
 
 import android.arch.persistence.room.*
-import com.example.wynkbasic.content.db.entities.Collection
 
-@Dao
-abstract class CollectionDao : BaseDao<Collection>(){
+abstract class CollectionDao{
 
-    @Query("delete from Collection")
+    @Query("delete from ItemRelation")
     abstract fun clearCollections()
 }
