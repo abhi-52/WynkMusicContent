@@ -16,6 +16,6 @@ abstract class ItemDao : BaseDao<Item>(){
     @Query("delete from Item")
     abstract fun clearItemList()
 
-    @Query("SELECT B.item_id AS collection_item_id, * FROM Collection B LEFT JOIN Item A ON A.id=B.item_id WHERE  B.collection_id=:collectionId ORDER BY B.rank ASC LIMIT 50")
+    @Query("SELECT A.* FROM Collection B LEFT JOIN Item A ON A.id=B.item_id WHERE  B.collection_id=:collectionId ORDER BY B.rank ASC LIMIT 50")
     abstract fun loadSongItems(collectionId: String): LiveData<List<Item>>
 }

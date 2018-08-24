@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey
 import org.json.JSONObject
 
 @Entity
-open class Item {
+class Item {
 
     @PrimaryKey
     lateinit var id: String
@@ -25,13 +25,14 @@ open class Item {
 
     var keywords: String? = null
 
+    var smallImage: String? = null
+
+    var subtitle: String? = null
+
+    var ostreamingUrl: String? = null
+
     internal lateinit var meta: JSONObject
 
     @Ignore
     var items: MutableList<Item>? = null
-
-    fun getSmallImage(): String = meta.getString("smallImage")
-
-    fun getSubTitle(): String = meta.getString("subtitle")
-
 }

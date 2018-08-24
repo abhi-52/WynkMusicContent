@@ -10,9 +10,9 @@ import java.lang.reflect.Type
 class ItemSerializer : JsonDeserializer<Item> {
 
     override fun deserialize(
-        json: JsonElement?,
-        typeOfT: Type?,
-        context: JsonDeserializationContext?
+            json: JsonElement?,
+            typeOfT: Type?,
+            context: JsonDeserializationContext?
     ): Item {
         json?.asJsonObject?.let {
             val jsonObject = JSONObject(it.toString())
@@ -33,8 +33,19 @@ class ItemSerializer : JsonDeserializer<Item> {
         jsonObject.remove("type")
         itemModel.offset = jsonObject.optInt("offset", 0)
         jsonObject.remove("offset")
+
         itemModel.keywords = jsonObject.optString("keywords")
         jsonObject.remove("keywords")
+
+        itemModel.smallImage = jsonObject.optString("smallImage", "")
+        jsonObject.remove("smallImage")
+
+        itemModel.ostreamingUrl = jsonObject.optString("ostreamingUrl", "")
+        jsonObject.remove("ostreamingUrl")
+
+        itemModel.subtitle = jsonObject.optString("subtitle", "")
+        jsonObject.remove("subtitle")
+
         itemModel.items = mutableListOf()
         if (jsonObject.has("items")) {
             val items = jsonObject.getJSONArray("items")

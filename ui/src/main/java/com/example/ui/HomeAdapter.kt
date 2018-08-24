@@ -10,7 +10,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.wynkbasic.content.db.entities.Item
 
-class HomeAdapter(val context: Context?) : RecyclerView.Adapter<HomeAdapter.ItemViewHolder>() {
+class HomeAdapter(context: Context?) : RecyclerView.Adapter<HomeAdapter.ItemViewHolder>() {
 
     private var items: List<Item>? = null
 
@@ -33,21 +33,14 @@ class HomeAdapter(val context: Context?) : RecyclerView.Adapter<HomeAdapter.Item
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.tvTitle.text = items?.get(position)?.title
         holder.tvIndex.text = position.toString()
-        holder.tvSubTitle.text = items?.get(position)?.getSubTitle()
-        Glide.with(holder.imageView.context).load(items?.get(position)?.getSmallImage()).into(holder.imageView)
+        holder.tvSubTitle.text = items?.get(position)?.subtitle
+        Glide.with(holder.imageView.context).load(items?.get(position)?.smallImage).into(holder.imageView)
     }
-
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: AppCompatImageView = itemView.findViewById(R.id.iv_song)
-        lateinit var tvTitle: TextView
-        lateinit var tvSubTitle: TextView
-        lateinit var tvIndex: TextView
-
-        init {
-            tvTitle = itemView.findViewById(R.id.tv_item_title)
-            tvSubTitle = itemView.findViewById(R.id.tv_item_subTitle)
-            tvIndex = itemView.findViewById(R.id.tv_index)
-        }
+        var tvTitle: TextView = itemView.findViewById(R.id.tv_item_title)
+        var tvSubTitle: TextView = itemView.findViewById(R.id.tv_item_subTitle)
+        var tvIndex: TextView = itemView.findViewById(R.id.tv_index)
     }
 }

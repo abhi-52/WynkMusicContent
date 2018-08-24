@@ -49,7 +49,7 @@ class GridAdapter(private val mListener: GridFragment.OnListFragmentInteractionL
             tag = item
             setOnClickListener(mOnClickListener)
         }
-        Glide.with(holder.mIvImage.context).load(item?.getSmallImage()).into(holder.mIvImage)
+        Glide.with(holder.mIvImage.context).load(item?.smallImage).into(holder.mIvImage)
 
     }
 

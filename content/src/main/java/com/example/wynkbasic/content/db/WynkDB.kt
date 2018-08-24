@@ -10,7 +10,7 @@ import com.example.wynkbasic.content.db.dao.ItemDao
 import com.example.wynkbasic.content.db.entities.Collection
 import com.example.wynkbasic.content.db.entities.Item
 
-@Database(entities = [Item::class, Collection::class], version = 1)
+@Database(entities = [Item::class, Collection::class], version = 1, exportSchema = true)
 @TypeConverters(DbTypeConverters.JsonObjectTypeConverter::class)
 abstract class WynkDB : RoomDatabase() {
 

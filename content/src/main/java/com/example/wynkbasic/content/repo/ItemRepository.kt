@@ -36,7 +36,6 @@ internal constructor(val appExecutors: AppExecutors, val apiService: ApiService,
             override fun onFetchFailed() {
 
             }
-
         }.asLiveData()
     }
 
