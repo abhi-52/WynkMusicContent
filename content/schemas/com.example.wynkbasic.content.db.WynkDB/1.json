@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "c63aa8d9cfc4a8f4e63fe71a4b10e5ea",
+    "identityHash": "4aeca7f9147756176cf147c792a964e6",
     "entities": [
       {
         "tableName": "Item",
@@ -92,16 +92,16 @@
       },
       {
         "tableName": "ItemRelation",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`parent_id` TEXT NOT NULL, `child_id` TEXT NOT NULL, `parent_title` TEXT NOT NULL, `rank` INTEGER NOT NULL, PRIMARY KEY(`parent_id`, `child_id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`parent_id` TEXT NOT NULL, `child_id` TEXT NOT NULL, `parent_title` TEXT NOT NULL, `rank` INTEGER NOT NULL, PRIMARY KEY(`parent_id`, `child_id`), FOREIGN KEY(`parent_id`) REFERENCES `Item`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`child_id`) REFERENCES `Item`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
-            "fieldPath": "id",
+            "fieldPath": "parentId",
             "columnName": "parent_id",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "itemId",
+            "fieldPath": "childId",
             "columnName": "child_id",
             "affinity": "TEXT",
             "notNull": true
@@ -126,13 +126,53 @@
           ],
           "autoGenerate": false
         },
-        "indices": [],
-        "foreignKeys": []
+        "indices": [
+          {
+            "name": "index_ItemRelation_parent_id",
+            "unique": false,
+            "columnNames": [
+              "parent_id"
+            ],
+            "createSql": "CREATE  INDEX `index_ItemRelation_parent_id` ON `${TABLE_NAME}` (`parent_id`)"
+          },
+          {
+            "name": "index_ItemRelation_child_id",
+            "unique": false,
+            "columnNames": [
+              "child_id"
+            ],
+            "createSql": "CREATE  INDEX `index_ItemRelation_child_id` ON `${TABLE_NAME}` (`child_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Item",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "parent_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "Item",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "child_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"c63aa8d9cfc4a8f4e63fe71a4b10e5ea\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"4aeca7f9147756176cf147c792a964e6\")"
     ]
   }
 }

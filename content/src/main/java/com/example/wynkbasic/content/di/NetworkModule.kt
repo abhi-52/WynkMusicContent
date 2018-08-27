@@ -3,7 +3,6 @@ package com.example.wynkbasic.content.di
 import android.app.Application
 import android.arch.persistence.room.Room
 import com.example.wynkbasic.content.db.WynkDB
-import com.example.wynkbasic.content.db.dao.CollectionDao
 import com.example.wynkbasic.content.db.dao.ItemDao
 import com.example.wynkbasic.content.network.ApiService
 import com.example.wynkbasic.content.network.RetrofitProvider

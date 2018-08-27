@@ -5,8 +5,6 @@ import android.arch.lifecycle.LiveData
 import com.example.wynkbasic.content.db.dao.ItemDao
 import com.example.wynkbasic.content.db.entities.Item
 import com.example.wynkbasic.content.network.ApiService
-import com.example.wynkbasic.content.db.entities.ItemRelation
-import com.example.wynkbasic.content.db.dao.CollectionDao
 import javax.inject.Inject
 
 class ItemRepository @Inject
@@ -38,6 +36,6 @@ internal constructor(val appExecutors: AppExecutors, val apiService: ApiService,
     }
 
     private fun getItem(id: String, type: String): LiveData<List<Item>> {
-        return itemDao.loadSongItems(id)
+        return itemDao.loadItemsForParentId(id)
     }
 }
