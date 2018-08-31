@@ -2,7 +2,6 @@ package com.example.ui
 
 import android.app.Application
 import com.example.wynkbasic.content.ContentSDK
-import com.facebook.stetho.Stetho
 
 class WynkApp : Application() {
 
@@ -16,7 +15,6 @@ class WynkApp : Application() {
         super.onCreate()
 
         instance = this
-        Stetho.initializeWithDefaults(instance)
 
         contentSDK = ContentSDK.getInstance(this)
     }
