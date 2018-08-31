@@ -9,18 +9,18 @@ import com.example.wynkbasic.content.repo.Resource
 import com.example.wynkbasic.content.utils.SingletonHolder
 import javax.inject.Inject
 
-class ContentSDK private constructor(val application: Application){
+class ContentSDK private constructor(val application: Application) {
 
     @Inject
-    lateinit var itemRepository : ItemRepository
+    lateinit var itemRepository: ItemRepository
 
-    init{
+    init {
         DaggerDBAppComponent.builder().application(application).build().inject(this)
     }
 
     companion object : SingletonHolder<ContentSDK, Application>(::ContentSDK)
 
-    fun getContent(id: String, type: String, count: Int, offset: Int, childType: String) : LiveData<Resource<List<Item>>> =
+    fun getContent(id: String, type: String, count: Int, offset: Int, childType: String): LiveData<Resource<List<Item>>> =
             itemRepository.loadItem(id, type, count, offset, childType)
 
 }

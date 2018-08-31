@@ -6,10 +6,12 @@ import com.example.wynkbasic.content.db.dao.ItemDao
 import com.example.wynkbasic.content.db.entities.Item
 import com.example.wynkbasic.content.network.ApiService
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class ItemRepository @Inject
-internal constructor(val appExecutors: AppExecutors, val apiService: ApiService,
-                     val itemDao: ItemDao) {
+internal constructor(private val appExecutors: AppExecutors, private val apiService: ApiService,
+                     private val itemDao: ItemDao) {
 
     fun loadItem(id: String, type: String, count: Int, offset: Int, childType: String): LiveData<Resource<List<Item>>> {
         return object : NetworkBoundResource<List<Item>, Item>(appExecutors) {

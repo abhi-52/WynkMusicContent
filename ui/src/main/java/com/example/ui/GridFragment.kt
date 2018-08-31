@@ -9,11 +9,13 @@ import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.wynkbasic.content.db.entities.Item
 import com.example.ui.viewModel.HomeViewModel
+import com.example.wynkbasic.content.repo.Status
 import kotlinx.android.synthetic.main.fragment_grid.*
 
 /**
@@ -34,7 +36,6 @@ class GridFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
         }
@@ -42,14 +43,11 @@ class GridFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_grid, container, false)
-
-        return view
+        return inflater.inflate(R.layout.fragment_grid, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         if (view is RecyclerView) {
             with(view) {
@@ -60,7 +58,6 @@ class GridFragment : Fragment() {
                 addItemDecoration(SpacingDecoration())
             }
         }
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -72,12 +69,20 @@ class GridFragment : Fragment() {
         //val viewModel = ViewModelProviders.of(this, HomeViewModelFactory(WynkApp.instance.itemRepository)).get(HomeViewModel::class.java)
         val viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
 
-        viewModel.getItem(TOP_PLAYLIST_ID, "package", "PLAYLIST")?.observe(this, Observer {
+        viewModel.items?.observe(this, Observer {
             //            var items = mutableListOf<Item>()
 
 //            it?.data?.let { items.add(it) }
+            if (it?.status == Status.LOADING && (it.data == null || it.data!!.isEmpty())){
+                progress_bar.visibility=View.VISIBLE
+                recyclerView.visibility=View.GONE
+            }else{
+                progress_bar.visibility=View.GONE
+                recyclerView.visibility=View.VISIBLE
+            }
             adapter.setData(it?.data)
         })
+        viewModel.getItem(TOP_PLAYLIST_ID, "package", "PLAYLIST")
     }
 
     override fun onAttach(context: Context) {

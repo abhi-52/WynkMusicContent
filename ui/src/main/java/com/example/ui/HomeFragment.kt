@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,8 +63,7 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
         val viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
-
-        viewModel.getItem(itemId, itemType, "SONG")?.observe(this, Observer {
+        viewModel.items?.observe(this, Observer {
             //            var items = mutableListOf<Item>()
 
 //            it?.data?.let { items.add(it) }
@@ -76,6 +76,8 @@ class HomeFragment : Fragment() {
             }
             adapter.setData(it?.data)
         })
+
+        viewModel.getItem(itemId, itemType, "SONG")
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -141,4 +143,5 @@ class HomeFragment : Fragment() {
                     }
                 }
     }
+
 }

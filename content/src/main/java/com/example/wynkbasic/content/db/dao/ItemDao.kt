@@ -8,17 +8,20 @@ import com.example.wynkbasic.content.db.entities.ItemRelation
 @Dao
 abstract class ItemDao : BaseDao<Item>() {
 
-    @Query("select * from Item where type = :type")
+    @Query("SELECT * FROM Item WHERE type = :type")
     abstract fun loadItemList(type: String): LiveData<List<Item>>
 
-    @Query("select * from Item where id = :id")
+    @Query("SELECT * FROM Item WHERE id = :id")
     abstract fun loadItemById(id: String): LiveData<Item>
 
-    @Query("delete from Item")
+    @Query("SELECT * FROM Item WHERE id in (:ids)")
+    abstract fun loadItemByIds(ids: List<String>): LiveData<Item>
+
+    @Query("DELETE FROM Item")
     abstract fun clearItemList()
 
     @Transaction
-    @Query("SELECT A.* FROM ItemRelation B LEFT JOIN Item A ON A.id=B.child_id WHERE  B.parent_id=:parentId ORDER BY B.rank ASC")
+    @Query("SELECT A.* FROM ItemRelation B LEFT JOIN Item A ON A.id=B.child_id WHERE B.parent_id=:parentId ORDER BY B.rank ASC")
     abstract fun loadItemsForParentId(parentId: String): LiveData<List<Item>>
 
     @Query("SELECT * FROM Item WHERE type = :type")

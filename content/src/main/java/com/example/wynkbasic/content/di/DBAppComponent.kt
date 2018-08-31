@@ -7,11 +7,12 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class])
+@Component(modules = [ContentModule::class])
 interface DBAppComponent{
 
     @Component.Builder
     interface Builder{
+
         @BindsInstance
         fun application(application: Application) : Builder
 
