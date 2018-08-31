@@ -8,6 +8,7 @@ import com.example.wynkbasic.content.model.Artist
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import org.json.JSONObject
+import java.lang.reflect.Type
 
 @Entity
 class Item {
@@ -38,7 +39,7 @@ class Item {
     internal lateinit var meta: JSONObject
 
     @Ignore
-    var items: MutableList<Item>? = null
+    internal var items: MutableList<Item>? = null
 
     fun getActualTotal(): Int = meta.optInt("actualTotal", 0)
 
